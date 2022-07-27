@@ -67,7 +67,7 @@ jobs:
           echo "::set-output name=OPENWRT_ROOT_PATH::$(echo $PWD)"
       - name: Generate Toolchain Config
         run: |
-          [ -e $CONFIG_FILE ] && cp $CONFIG_FILE $OPENWRT_ROOT_PATH/.config
+          [ -e ./config/$CONFIG_FILE ] && cp ./config/$CONFIG_FILE $OPENWRT_ROOT_PATH/.config
           echo -e "\nCONFIG_ALL=y" >> $OPENWRT_ROOT_PATH/.config
           echo -e "\nCONFIG_ALL_NONSHARED=y" >> $OPENWRT_ROOT_PATH/.config
           cd $OPENWRT_ROOT_PATH
@@ -119,7 +119,7 @@ jobs:
           ./scripts/feeds install -a
       - name: Load Custom Configuration
         run: |
-          [ -e $CONFIG_FILE ] && cp $CONFIG_FILE $OPENWRT_ROOT_PATH/.config
+          [ -e ./config/$CONFIG_FILE ] && cp ./config/$CONFIG_FILE $OPENWRT_ROOT_PATH/.config
           cd $OPENWRT_ROOT_PATH
           make defconfig
       - name: Compile Tools
@@ -275,7 +275,7 @@ jobs:
           git pull
       - name: Load Custom Feeds
         run: |
-          [ -e scripts/$FEEDS_SH ] && cp scripts/$FEEDS_SH $OPENWRT_ROOT_PATH/$FEEDS_SH
+          [ -e ./scripts/$FEEDS_SH ] && cp ./scripts/$FEEDS_SH $OPENWRT_ROOT_PATH/$FEEDS_SH
           chmod +x $OPENWRT_ROOT_PATH/$FEEDS_SH
           cd $OPENWRT_ROOT_PATH
           echo $FEEDS_SH
@@ -289,8 +289,8 @@ jobs:
           ./scripts/feeds install -a
       - name: Load Custom Configuration
         run: |
-          [ -e scripts/$DIY_SH ] && cp scripts/$DIY_SH $OPENWRT_ROOT_PATH/$DIY_SH
-          [ -e config/$CONFIG_FILE ] && cp config/$CONFIG_FILE $OPENWRT_ROOT_PATH/.config
+          [ -e ./scripts/$DIY_SH ] && cp ./scripts/$DIY_SH $OPENWRT_ROOT_PATH/$DIY_SH
+          [ -e ./config/$CONFIG_FILE ] && cp ./config/$CONFIG_FILE $OPENWRT_ROOT_PATH/.config
           chmod +x $OPENWRT_ROOT_PATH/$DIY_SH
           cd $OPENWRT_ROOT_PATH
           make defconfig
