@@ -12,6 +12,11 @@ on:
   #  - cron: 0 18 * * *
   # watch:
   #   types: started
+    inputs:
+      release:
+        description: 'Upload Firmware to Release'
+        required: false
+        defaults: 'false'
 
 env:
   SOURCE_URL: https://github.com/Z0L3S/openwrt
@@ -21,7 +26,6 @@ env:
   FEEDS_SH: feeds_o.sh
   TOOLCHAIN_TAG: toolchain
   TOOLCHAIN_RELEASE_UPLOAD: true
-  FIRMWARE_RELEASE_UPLOAD: false
   FREE_UP_DISK: true
   COMBINE_DISK: true
   TZ: Asia/Shanghai
@@ -432,7 +436,7 @@ jobs:
 
       - name: Deploy Files To Release
         uses: ncipollo/release-action@v1.8.0
-        if: env.FIRMWARE_RELEASE_UPLOAD == 'true'
+        if: (github.event.inputs.release == 'true' && github.event.inputs.release != 'false') || contains(github.event.action, 'release')
         with:
           name: openwrt-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
           allowUpdates: true
