@@ -438,7 +438,7 @@ jobs:
         uses: ncipollo/release-action@v1.8.0
         if: (github.event.inputs.release == 'true' && github.event.inputs.release != 'false') || contains(github.event.action, 'release')
         with:
-          name: openwrt-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
+          name: lede-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
           allowUpdates: true
           replacesArtifacts: true
           tag: ${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
