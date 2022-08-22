@@ -3,7 +3,7 @@
 # Description: (c) SuLingGG | https://github.com/SuLingGG/OpenWrt-Rpi
 #=================================================
 
-name: Build OpenWrt
+name: Build OpenWrt P28 Vanilla
 
 on:
   repository_dispatch:
@@ -21,7 +21,7 @@ on:
 env:
   SOURCE_URL: https://github.com/Z0L3S/openwrt
   SOURCE_BRANCH: p28
-  CONFIG_FILE: openwrt.config
+  CONFIG_FILE: openwrt-p28-vanilla.config
   DIY_SH: diy.sh
   FEEDS_SH: feeds_o.sh
   TOOLCHAIN_TAG: toolchain
