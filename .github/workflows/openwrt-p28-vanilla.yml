@@ -15,8 +15,9 @@ on:
     inputs:
       release:
         description: 'Upload Firmware to Release'
+        type: boolean
         required: false
-        default: 'false'
+        default: false
 
 env:
   SOURCE_URL: https://github.com/Z0L3S/openwrt
